@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SourceFileCollection xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Profile>Reach</Profile>
+  <Platform>Windows</Platform>
+  <Config />
+  <SourceFiles>
+    <File>C:/Users/mrbob/MEGA/Subjects/Programming/Visual Studio/workspace(MonoGame)/maze-world/MazeWorld/MazeWorld/Content/WhiteSquare16.png</File>
+    <File>C:/Users/mrbob/MEGA/Subjects/Programming/Visual Studio/workspace(MonoGame)/maze-world/MazeWorld/MazeWorld/Content/WhiteSquare32.png</File>
+    <File>C:/Users/mrbob/MEGA/Subjects/Programming/Visual Studio/workspace(MonoGame)/maze-world/MazeWorld/MazeWorld/Content/WhiteSquare8.png</File>
+    <File>C:/Users/mrbob/MEGA/Subjects/Programming/Visual Studio/workspace(MonoGame)/maze-world/MazeWorld/MazeWorld/Content/Arial.spritefont</File>
+    <File>C:/Users/mrbob/MEGA/Subjects/Programming/Visual Studio/workspace(MonoGame)/maze-world/MazeWorld/MazeWorld/Content/WhiteSquare4.png</File>
+    <File>C:/Users/mrbob/MEGA/Subjects/Programming/Visual Studio/workspace(MonoGame)/maze-world/MazeWorld/MazeWorld/Content/WhiteSquare64.png</File>
+    <File>C:/Users/mrbob/MEGA/Subjects/Programming/Visual Studio/workspace(MonoGame)/maze-world/MazeWorld/MazeWorld/Content/WhiteSquare2.png</File>
+  </SourceFiles>
+</SourceFileCollection>
