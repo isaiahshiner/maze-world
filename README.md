@@ -20,34 +20,56 @@ tbd
 
 
 __Keyboard Controls:__
-
+```
 Escape:--------------- Closes the program.
+
 Right Arrow: --------- Advances the Grid once.
+
 Space:---------------- Advances the Grid continuesly based on speed.
+
 Up and Down arrows:--- Changes speed. _Note: higher speeds may cause lag._
 
 S Key:---------------- Turns on Salting, which will mark some Rocks for deletion during Scramble.
+
 R Key:---------------- Resets the Grid, and changes to manual mode.
+
 T Key:---------------- Scrambles the Grid
+
 Y Key:---------------- Solves the Grid
+
 L Key:---------------- Resets the Grid, and disables manual mode.
 
 Number row 1:--------- Changes the Grid block size to 64 (default)
+
 Number row 2:--------- Changes the Grid block size to 32
+
 Number row 3:--------- 16
+
 Number row 4:--------- 8
+
 Number row 5:--------- 4
+
 Number row 6:--------- 2 _Note: Can cause very high lag_
 
 Z Key:---------------- On click, the block the mouse is on will print to the header.
+
 X Key:---------------- On click, the block the mouse is on will become an Actor.
+
 C Key:---------------- On click, the block the mouse is on will become a Rock.
 
 NumPad Key 1 --------- Changes the block color to Red (default)
+
 NumPad Key 2 --------- Orange
+
 NumPad Key 3 --------- Yellow
+
 NumPad Key 4 --------- Green
+
 NumPad Key 5 --------- Blue
+
 NumPad Key 6 --------- Purple
+
 NumPad Key 7 --------- Black
+
 NumPad Key 8 --------- Eraser (White)
+```
