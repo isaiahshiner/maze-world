@@ -16,8 +16,14 @@ To run MazeWorld, download the latest "Release" .zip from the downloads section,
 and extract the files anywhere. Open the folder and run the "MazeWorld.exe".
 
 Step By Step:
-tbd
-
+1. Look at the file list and find "Release X.X.X.zip"
+2. Click on "Release X.X.X.zip"
+3. On the right side, click download.
+4. It should prompt you to save the file. Make sure you remember where you save it to.
+5. Find the file, Right Click it and click "Extract All" or "Extract Here"
+6. Open the folder
+7. Double click on "MazeWorld.exe"
+8. Yay!
 
 __Keyboard Controls:__
 ```
