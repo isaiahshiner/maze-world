@@ -11,12 +11,12 @@ MazeWorld was originally based on GridWorld, a Case Study for the College Board 
 GridWorld used some of the same concepts, but was designed as a learning aid, not a true generic playground.
 The render system used Java GUI methods, and was terrible at running large Grids, for obvious reasons.
 
-__Download:__
-To run MazeWorld, download the latest "Release" .zip from the downloads section,
+__How To Download:__
+To run MazeWorld, download "Release X.X.X.zip" from the files section,
 and extract the files anywhere. Open the folder and run the "MazeWorld.exe".
 
-Step By Step:
-1. Look at the file list and find "Release X.X.X.zip"
+__Step By Step:__
+1. Look at the file list and find "Release X.X.X.zip". For example: "Release 0.1.0.zip"
 2. Click on "Release X.X.X.zip"
 3. On the right side, click download.
 4. It should prompt you to save the file. Make sure you remember where you save it to.
@@ -24,6 +24,11 @@ Step By Step:
 6. Open the folder
 7. Double click on "MazeWorld.exe"
 8. Yay!
+
+__To Code for MazeWorld__
+Download the latest version of [MonoGame from here.](http://www.monogame.net/downloads/)
+Then download the repository and open MazeWorld.sln in Visual Studio.
+That should be all you need!
 
 __Keyboard Controls:__
 ```
