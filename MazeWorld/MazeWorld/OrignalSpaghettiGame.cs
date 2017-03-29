@@ -14,7 +14,7 @@ namespace MazeWorld
      * Ask me on Discord directly if something is confusing, as I'm sure a lot of this
      * will be.
      */
-    public class Game1 : Game
+    public class OrignalSpaghettiGame : Game
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
@@ -42,7 +42,7 @@ namespace MazeWorld
         MouseState mPrevious;
         Location lPrevious;
 
-        public Game1()
+        public OrignalSpaghettiGame()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";

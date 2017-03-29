@@ -74,7 +74,7 @@ namespace MazeWorld
         }
 
         /* At each step, all CurrentMinions spawn new Minions in all the open spots adjacent to them.
-         * These new RecruitMinions, then replace the CurrentMinions, and CurrentMinions become Cells
+         * These new RecruitMinions then replace the CurrentMinions, and CurrentMinions become Cells
          * All cells also update their color pattern to reflect distance traveled.
          */
         private void StepWithMinions()
@@ -100,7 +100,11 @@ namespace MazeWorld
                 if(!(grid.Get(Target) is BFSminion || grid.Get(Target) is BFScell))
                 {
                     grid.Reset();
-                    this.MoveToSideline();
+                    CurrentMinions.Clear();
+                    RecruitMinions.Clear();
+                    Cells.Clear();
+                    Phase = 1;
+                    Steps = 0;
                     return;
                 }
                 this.Phase++;

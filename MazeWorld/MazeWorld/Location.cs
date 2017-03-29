@@ -157,6 +157,18 @@ namespace MazeWorld
                 return true;
         }
 
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                int hash = 37;
+
+                hash = hash * 89 + X.GetHashCode();
+                hash = hash * 89 + Y.GetHashCode();
+                return hash;
+            }
+        }
+
         public override string ToString()
         {
             String str = "X:" + X + " Y:" + Y;

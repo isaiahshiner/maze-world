@@ -133,7 +133,13 @@ namespace MazeWorld
         public Entity Get(Location l) { return grid[l.X, l.Y]; }
         public Entity Set(Entity e, Location l) { return this.Set(e, l.X, l.Y); }
         public Entity Remove(Location l) { return this.Remove(l.X, l.Y); }
-        public bool IsValid(Location l) { return this.IsValid(l.X, l.Y); }
+        public bool IsValid(Location l)
+        {
+            if (l != null)
+                return this.IsValid(l.X, l.Y);
+            else
+                return false;
+        }
 
         /* Moves the Gener into place so that it can begin generating the maze.
          * Currently, the Gener is in the bottom right corner of the Grid. 

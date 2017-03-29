@@ -91,15 +91,18 @@
     <Compile Include="BFScell.cs" />
     <Compile Include="BFSminion.cs" />
     <Compile Include="BFSsolver.cs" />
+    <Compile Include="ControlsHelper.cs" />
     <Compile Include="Entity.cs" />
     <Compile Include="DFScell.cs" />
     <Compile Include="DFSgener.cs" />
-    <Compile Include="Game1.cs" />
+    <Compile Include="DrawHelper.cs" />
+    <Compile Include="OrignalSpaghettiGame.cs" />
     <Compile Include="Grid.cs" />
     <Compile Include="Location.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Rock.cs" />
+    <Compile Include="StandardMazeGame.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">
