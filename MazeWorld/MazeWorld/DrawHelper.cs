@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -39,7 +40,7 @@ namespace MazeWorld
         public int HaltedFrames { get; set; } = 0;
         public int Phase { get; set; } = 0;
         public bool Looping { get; set; } = true;
-        public bool Auto { get; set; } = false;//Currently unused
+        public bool Auto { get; set; } = false;
 
         //Color and Block placement
         public Color SelectedColor { get; set; } = Color.Red;
@@ -48,17 +49,11 @@ namespace MazeWorld
         public DrawHelper(Game g)
         {
             game = g;
-
             Graphics = new GraphicsDeviceManager(game);
-            Graphics.IsFullScreen = true;
             game.IsFixedTimeStep = false;
-
             game.IsMouseVisible = true;
 
-            X = Graphics.PreferredBackBufferWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
-            Y = Graphics.PreferredBackBufferHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
-
-            Graphics.ApplyChanges();
+            EnableFullScreen();
         }
 
         public void SetTextures( Texture2D baseTex, SpriteFont font)
@@ -94,25 +89,6 @@ namespace MazeWorld
             Batch.DrawString(Font, ("FPS: " + fps.ToString("0.0")), new Vector2(9, 8), Color.LimeGreen);
             Batch.DrawString(Font, "Speed: " + Speed, new Vector2(85, 8), Color.LimeGreen);
             Batch.DrawString(Font, HeaderObjectText, new Vector2(160, 8), Color.LimeGreen);
-        }
-
-        public void CalculateRectangles()
-        {
-            int rightAdd = X % 16;
-            int bottomAdd = Y % 16;
-
-            if (rightAdd == 0)
-                rightAdd = 8;
-            else if (rightAdd + 8 > 16)
-                rightAdd -= 8;
-
-            if (bottomAdd == 0)
-                bottomAdd = 8;
-            else if (bottomAdd + 8 > 16)
-                bottomAdd -= 8;
-
-            Header = new Rectangle(8, 7, X - (8 + rightAdd), 18);
-            PlayArea = new Rectangle(8, 32, X - (8 + rightAdd), Y - (32 + 8 + bottomAdd));
         }
 
         public int CalcSpeed()
@@ -173,6 +149,7 @@ namespace MazeWorld
             }
             grid.FinishedWithStep = true;
             Looping = true;
+            Auto = false;
             Phase = 0;
             grid.Reset();
         }
@@ -188,26 +165,35 @@ namespace MazeWorld
             }
             Phase = 0;
             Looping = false;
+            Auto = false;
             grid.Reset();
         }
 
         public void Scramble()
         {
-            if (Phase == 2 && grid.MazeSolver is BFSsolver)
-                ((BFSsolver)(grid.MazeSolver)).Finish();
-            Looping = false;
-            Phase = 1;
-            grid.Reset();
-            grid.Scramble();
+            if (Phase != 1)
+            {
+                if (Phase == 2 && grid.MazeSolver is BFSsolver)
+                    ((BFSsolver)(grid.MazeSolver)).Finish();
+                Phase = 1;
+                Looping = false;
+                Auto = false;
+                grid.Reset();
+                grid.Scramble();
+            }
         }
 
         public void Solve()
         {
-            if (Phase == 1 && grid.MazeGener is DFSgener)
-                ((DFSgener)(grid.MazeGener)).Finish();
-            Looping = false;
-            Phase = 2;
-            grid.Solve();
+            if (Phase != 2)
+            {
+                if (Phase == 1 && grid.MazeGener is DFSgener)
+                    ((DFSgener)(grid.MazeGener)).Finish();
+                Phase = 2;
+                Looping = false;
+                Auto = false;
+                grid.Solve();
+            }
         }
 
         public void PlaceBlock(Location l)
@@ -253,6 +239,42 @@ namespace MazeWorld
             InstantiateGrid();
             Phase = 0;
             Looping = true;
+        }
+
+        public void EnableFullScreen()
+        {
+            X = Graphics.PreferredBackBufferWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
+            Y = Graphics.PreferredBackBufferHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
+            Graphics.IsFullScreen = true;
+            InstantiateGrid();
+            Phase = 0;
+            Looping = true;
+            Graphics.ApplyChanges();
+        }
+        public void DisableFullScreen()
+        {
+            X = Graphics.PreferredBackBufferWidth =  (int)(GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width  * (double).75);
+            Y = Graphics.PreferredBackBufferHeight = (int)(GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height * (double).75);
+            Graphics.IsFullScreen = false;
+            InstantiateGrid();
+            Phase = 0;
+            Looping = true;
+            Graphics.ApplyChanges();
+        }
+
+        public void CalculateRectangles()
+        {
+            int rightAdd = X % 16;
+            int bottomAdd = Y % 16;
+
+            if (rightAdd + 8 >= 16)
+                rightAdd -= 8;
+
+            if (bottomAdd + 8 >= 16)
+                bottomAdd -= 8;
+
+            Header = new Rectangle(8, 7, X - (16 + rightAdd), 18);
+            PlayArea = new Rectangle(8, 32, X - (16 + rightAdd), Y - (40 + rightAdd));
         }
 
         private void InstantiateGrid()
