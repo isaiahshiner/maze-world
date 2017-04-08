@@ -45,7 +45,7 @@ namespace MazeWorld
 
         protected override void Update(GameTime gameTime)
         {
-            if(IsActive)
+            if (IsActive)
             {
                 //Checks to see if the Maze should move to the next step
                 draw.LoopingCheck();
@@ -83,6 +83,13 @@ namespace MazeWorld
                 else if (con.KeyFalling(Keys.L))
                     draw.RestartLooping();
 
+                else if (con.KeyFalling(Keys.A))
+                    draw.Auto = !draw.Auto;
+
+                //If nothing else was pressed, then do the Auto check
+                else if (draw.Auto)
+                    draw.grid.Step(draw.CalcSpeed());
+
                 //Changes speed
                 if (con.KeyFalling(Keys.Up))
                     draw.Speed++;
@@ -93,6 +100,15 @@ namespace MazeWorld
                 //Salting will randomly mark some generated rocks to be removed.
                 if (con.KeyFalling(Keys.S))
                     draw.grid.Salting = true;
+
+                //Flips fullscreen
+                if (con.KeyFalling(Keys.F))
+                {
+                    if (draw.Graphics.IsFullScreen)
+                        draw.DisableFullScreen();
+                    else
+                        draw.EnableFullScreen();
+                }
 
                 //Changes the texture size and reinstantiates the grid
                 if (con.KeyFalling(Keys.D1))
@@ -149,6 +165,9 @@ namespace MazeWorld
                     }
                 }
             }
+            else if (!IsActive && draw.Graphics.IsFullScreen)
+                draw.DisableFullScreen();
+
             con.Update();
             base.Update(gameTime);
         }
