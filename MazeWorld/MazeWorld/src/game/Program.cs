@@ -15,7 +15,7 @@ namespace MazeWorld
         [STAThread]
         static void Main()
         {
-            using (var game = new StandardMazeGame())
+            using (var game = new MazeGame())
                 game.Run();
         }
     }

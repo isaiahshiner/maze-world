@@ -15,6 +15,7 @@ namespace MazeWorld
      * as well as most of the helper methods.
      * Since the methods are generally very simple and are not conditional, 
      * few will be documented.
+     * this comment is a test
      */
     public class DrawHelper
     {

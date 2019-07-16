@@ -10,26 +10,44 @@ using System.Threading.Tasks;
 
 namespace MazeWorld
 {
-    /* The pregenerated MonoGame Game class with just enough code to run the Maze.
-     * Relies heavily on Helper classes.
-     */
-    public class StandardMazeGame : Game
+    /// <summary>
+    /// Essential MonoGame class, contains main game loop, with drawing and controls.
+    /// </summary>
+    /// <remarks>This contains dependancies for the maze controls, such as looping, salting, etc. 
+    /// I am probably going to add more functionality here, rather than correctly abstracting everything.
+    /// That will make this class more complex, but I dont think this project is worth investing the time
+    /// to correctly abstract different game modes to different classes.</remarks>
+    public class MazeGame : Game
     {
+        /// <summary>
+        /// Does the actual drawing, when requested by the Game loop.
+        /// </summary>
         private DrawHelper draw;
+        /// <summary>
+        /// Useful control helpers, does not specify actual controls.
+        /// </summary>
         private ControlsHelper con;
 
-        public StandardMazeGame()
+        /// <summary>
+        /// Makes a new game and initializes helpers. No textures are loaded.
+        /// </summary>
+        public MazeGame()
         {
             Content.RootDirectory = "Content";
             draw = new DrawHelper(this);
             con = new ControlsHelper(draw);
         }
 
+        /* If any work needed to be done before content (textures) is loaded, it would be done here.
         protected override void Initialize()
         {
             base.Initialize();
         }
+        */
 
+        /// <summary>
+        /// Loads and sets default textures.
+        /// </summary>
         protected override void LoadContent()
         {
             Texture2D t = this.Content.Load<Texture2D>("WhiteSquare16");
@@ -38,11 +56,19 @@ namespace MazeWorld
             base.LoadContent();
         }
 
+        /// <summary>
+        /// Performs work that needs to be done in the frame right before the game starts.
+        /// </summary>
         protected override void BeginRun()
         {
-            con.Update();//Updates on the frame right before the game starts
+            con.Update();//Stores keypress info, in case a key is pressed while the game starts.
         }
 
+
+        /// <summary>
+        /// Game loop. Each loop is 1 frame.
+        /// </summary>
+        /// <param name="gameTime"></param>
         protected override void Update(GameTime gameTime)
         {
             if (IsActive)
