@@ -295,7 +295,7 @@ namespace MazeWorld
                 {
                     if (grid.Get(i, j) != null)
                     {
-                        Color c = grid.Get(i, j).color;
+                        Color c = grid.Get(i, j).Color;
                         Vector2 p = new Vector2(v.X + (t.Width * i), v.Y + (t.Height * j));
 
                         s.Draw(texture: t, color: c, position: p);

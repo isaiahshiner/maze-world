@@ -7,14 +7,14 @@
     <framework targetVersion="4.5" profile="Full" supportedRuntime="4.0.30319" />
   </compatibleFrameworks>
   <dependency>
-    <dependentAssembly dependencyType="install" codebase="MazeWorld.exe.manifest" size="11794">
+    <dependentAssembly dependencyType="install" codebase="MazeWorld.exe.manifest" size="12480">
       <assemblyIdentity name="MazeWorld.exe" version="1.0.0.1" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="x86" type="win32" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>xSrNeXeiNnwz3tI0sdXoc20GNPx8HPmB6YOx44NLamk=</dsig:DigestValue>
+        <dsig:DigestValue>l+bhH954QAvdVq3sljA8gmiPQcTgOxw1emwfm27+P0E=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

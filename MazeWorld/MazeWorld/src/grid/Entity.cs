@@ -12,9 +12,9 @@ namespace MazeWorld
      */
     public abstract class Entity
     {
-        public Color color { get; set; } = Color.White;//XNA Framework Color.
-        public Grid grid { get; private set; }//Reference to the main Grid.
-        public Location location { get; private set; }//(X, Y) coordinates.
+        public Color Color { get; set; } = Color.White;//XNA Framework Color.
+        public Grid Grid { get; private set; }//Reference to the main Grid.
+        public Location Location { get; private set; }//(X, Y) coordinates.
 
         /* Constructs an Entity with a Grid and Location.
          * The Entity will NOT put itself into the Grid automatically.
@@ -25,8 +25,8 @@ namespace MazeWorld
          */
         public Entity(Grid g, Location l)
         {
-            this.grid = g;
-            this.location = l;
+            this.Grid = g;
+            this.Location = l;
         }
 
         //Constructs an Entity with null values. Use caution.
@@ -43,11 +43,11 @@ namespace MazeWorld
          */
         public Entity MoveTo(int x, int y)
         {
-            if (grid.IsValid(x, y))
+            if (Grid.IsValid(x, y))
             {
-                grid.Remove(location);
-                this.location = new Location(x, y);
-                return grid.Set(this, this.location);
+                Grid.Remove(Location);
+                this.Location = new Location(x, y);
+                return Grid.Set(this, this.Location);
             }
             else
                 throw new Exception("Location " + x + ", " + y + "was invalid!");
@@ -57,7 +57,7 @@ namespace MazeWorld
         public Entity MoveTo(Location l) { return this.MoveTo(l.X, l.Y); }
 
         //A Set method for Grid, but named to make it clear this should not be used lightly.
-        public void ForceGridChange(Grid g) { this.grid = g; }
+        public void ForceGridChange(Grid g) { this.Grid = g; }
 
         /* Moves this Entity into the Grid, and adjusts its Grid reference accordingly.
          * 
@@ -77,7 +77,7 @@ namespace MazeWorld
          */
         public void RemoveSelfFromGrid()
         {
-            grid.Remove(location);
+            Grid.Remove(Location);
             this.ForceGridChange(null);
         }
 
@@ -90,8 +90,8 @@ namespace MazeWorld
          */
         public void MoveToSideline()
         {
-            if (location != null)
-                grid.Remove(location);
+            if (Location != null)
+                Grid.Remove(Location);
         }
 
         /* Moves an Entity into the Grid if it's location is null.
@@ -103,10 +103,10 @@ namespace MazeWorld
          */
         public void MoveFromSideline(int x, int y)
         {
-            if (grid.IsValid(x, y))
+            if (Grid.IsValid(x, y))
             {
-                grid.Set(this, x, y);
-                this.location = new Location(x, y);
+                Grid.Set(this, x, y);
+                this.Location = new Location(x, y);
             }
             else
                 throw new ArgumentException("Given Location must be Valid!");
@@ -118,7 +118,7 @@ namespace MazeWorld
 
         public override String ToString()
         {
-            return this.GetType() + ", " + this.color.ToString();
+            return this.GetType() + ", " + this.Color.ToString();
         }
     }
 }

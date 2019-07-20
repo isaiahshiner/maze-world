@@ -28,50 +28,23 @@ namespace MazeWorld
 
         //Central Random object used by all Entities.
         //Seed can be changed by grid.Rand = new Random(SEED);
-        public Random Rand { get; set; } = new Random(); 
-
-        /* The standard Geners and Solvers used by this Grid.
-         * 
-         * TODO: change to a generic system that does not require an instance
-         * of the object to be created by the Game class and then held indefinetley.
-         * This will be needed when other Geners and Solvers are added.
-         */
-        public Actor MazeGener { get; }
-        public Actor MazeSolver { get; }
-
-        public bool Salting { get; set; } = false;//Whether the Gener should randomly remove some Rocks
-        public float SaltFactor { get; set; } = .1f;//The chance that a Rock will be removed
-
-        public bool FinishedWithStep { get; set; } = true;//A messanger variable to allow the Geners and Solvers
-                                                          //to communicate with the Game object.
+        public Random Rand { get; set; } = new Random();
 
         /* Constructs a new Grid of size (X, Y) with 2 preinstantiated Geners and Solvers
          * PARAMETER: X and Y are positive.
-         * PARAMETER: Gener and Solver are != null;
-         * POSTCONDITION: Gener and Solver Grid reference = this;
-         * POSTCONDITION: Gener and Solver Location reference = null;
          */
-        public Grid(int x, int y, Actor gener, Actor solver)
+        public Grid(int maxX, int maxY)
         {
-            if (x <= 0 || y <= 0)
+            if (maxX <= 0 || maxY <= 0)
                 throw new ArgumentOutOfRangeException("Grid size must be positive.");
-            if (gener == null || solver == null)
-                throw new ArgumentNullException("Geners and solvers must be preinstantiated.");
 
-            grid = new Entity[x, y];
+            grid = new Entity[maxX, maxY];
             registry = new List<Actor>();
-            this.MaxX = x;
-            this.MaxY = y;
-
-            this.MazeGener = gener;
-            this.MazeSolver = solver;
-
-            MazeSolver.ForceGridChange(this);//Changes their Grid reference to this
-            MazeGener.ForceGridChange(this);
-
-            MazeSolver.MoveToSideline();//Changes their Location reference to null
-            MazeGener.MoveToSideline();
+            this.MaxX = maxX;
+            this.MaxY = maxY;
         }
+
+        public Grid((int, int) maxSize) : this(maxSize.Item1, maxSize.Item2) { }
 
         /* Returns the object in the Grid at (x, y). Returns null if there is nothing there.
          * PRECONDITION: IsValid(x, y) == true;
@@ -141,46 +114,7 @@ namespace MazeWorld
                 return false;
         }
 
-        /* Moves the Gener into place so that it can begin generating the maze.
-         * Currently, the Gener is in the bottom right corner of the Grid. 
-         * This can be changed later, but is largely inconsequential.
-         * 
-         * PRECONDITION: this.Reset() was just called, or equivalent. Grid should be clear of objects.
-         * PRECONDITION: MazeGener.Finish() was just called, or equivalent. Gener should not think its still generating.
-         * POSTCONDITION: grid.Get(grid.MaxX - 1, grid.MaxY - 1).Equals(MazeGener) == true;
-         */
-        public void Scramble()
-        {
-            MazeGener.MoveFromSideline(this.MaxX - 1, this.MaxY - 1);
-        }
-
-        /* Finds the first empty spot in the Grid starting from the top left and places the solver there.
-         * Also contains non-generic code to set the target of the BFSsolver.
-         * This approach should be changed to something more generic, perhaps an abstract MazeSolver class?
-         * 
-         * PRECONDITION: MazeSolver.Finish() was just called, or equivalent. Solver should not think its still solving.
-         * PRECONDITION: Grid should have at least one path to (MaxX - 1, MaxY - 1).
-         * POSTCONDITION: a MazeSolver should exist somewhere in the Grid.
-         * 
-         * TODO: Remove valid path requirement. Make it so that Solvers can fail.
-         */
-        public void Solve()
-        {
-            if (MazeSolver is BFSsolver)
-                ((BFSsolver)(MazeSolver)).Target = new Location(MaxX - 1, MaxY - 1);
-
-
-            for (int i = 0; i < MaxX; i++)
-                for(int j = 0; j < MaxY; j++)
-                    if (this.Get(i, j) == null)
-                    {
-                        MazeSolver.MoveFromSideline(i, j);
-                        return;
-                    }
-        }
-
         /* Removes all Entities from the Grid, leaving all Locations null.
-         * Saves the MazeGener and MazeSolver and moves them to the sideline instead.
          * 
          * POSTCONDITION: this.Get(any, any) == null;
          */
@@ -191,11 +125,8 @@ namespace MazeWorld
                 {
                     Entity e = this.Get(i, j);
                     if(e != null)
-                        if (!(e == MazeGener || e == MazeSolver))
-                            e.RemoveSelfFromGrid();
+                        e.RemoveSelfFromGrid();
                 }
-            MazeGener.MoveToSideline();
-            MazeSolver.MoveToSideline();
         }
 
         /* Calls Act on all Actors in the Grid. 
@@ -211,6 +142,9 @@ namespace MazeWorld
 
             for (int i = 0; i < actors.Length; i++)
                 actors[i].Act();
+
+            //This is what doesn't work
+            //registry.ForEach(actor => actor.Act());
         }
 
         /* Overloaded method to call Step repeatedly.

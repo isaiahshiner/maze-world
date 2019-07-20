@@ -20,9 +20,9 @@ namespace MazeWorld
      */
     public class Actor : Entity
     {
-        public Actor() : base() { this.color = Color.Cyan; }
+        public Actor() : base() { this.Color = Color.Cyan; }
 
-        public Actor(Color c, Grid g, Location l) : base(g, l) { this.color = c; }
+        public Actor(Color c, Grid g, Location l) : base(g, l) { this.Color = c; }
 
         /* Determines how an Actor should Act.
          * Should be kept short by using the other standard Act methods.
@@ -43,7 +43,7 @@ namespace MazeWorld
          */
         public virtual List<Entity> GetEntities()
         {
-            return Location.toEntities(grid, location.getFullLocations(grid, location.GetAllLocations(grid)));
+            return Location.toEntities(Grid, Location.getFullLocations(Grid, Location.GetAllLocations(Grid)));
         }
 
         /* Determines how Entites will be changed.
@@ -61,7 +61,7 @@ namespace MazeWorld
          */
         public virtual List<Location> GetMoveLocations()
         {
-            return location.getEmptyLocations(grid, location.GetDirectLocations(grid));
+            return Location.getEmptyLocations(Grid, Location.GetOrthogonalLocations(Grid));
         }
 
         /* Determines which Location out of the list will be chosen.
@@ -70,7 +70,7 @@ namespace MazeWorld
         public virtual Location ChooseMoveLocation(List<Location> locs)
         {
             if (locs != null && locs.Count > 0)
-                return locs[(int)(grid.Rand.NextDouble() * locs.Count)];
+                return locs[(int)(Grid.Rand.NextDouble() * locs.Count)];
             else
                 return null;
         }
@@ -94,10 +94,10 @@ namespace MazeWorld
         //Randomizes colors, with a push towards being cyan.
         public override void RandomizeColor()
         {
-            int r1 = (int)(grid.Rand.NextDouble() * 32), 
-                r2 = (int)(grid.Rand.NextDouble() * 128) + 128, 
-                r3 = (int)(grid.Rand.NextDouble() * 128) + 128;
-            this.color = new Color(r1, r2, r3);
+            int r1 = (int)(Grid.Rand.NextDouble() * 32), 
+                r2 = (int)(Grid.Rand.NextDouble() * 128) + 128, 
+                r3 = (int)(Grid.Rand.NextDouble() * 128) + 128;
+            this.Color = new Color(r1, r2, r3);
         }
     }
 }

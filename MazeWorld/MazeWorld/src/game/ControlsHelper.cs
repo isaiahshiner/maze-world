@@ -15,14 +15,14 @@ namespace MazeWorld
      */
     public class ControlsHelper
     {
-        public DrawHelper draw { get; set; }
+        public XNAGame Game { get; set; }
         public KeyboardState KPrevious { get; set; }
         public MouseState MPrevious { get; set; }
         public Location LPrevious { get; set; }
 
-        public ControlsHelper(DrawHelper d)
+        public ControlsHelper(XNAGame g)
         {
-            draw = d;
+            Game = g;
         }
 
         public void Update()
@@ -51,15 +51,15 @@ namespace MazeWorld
 
         public bool MouseIsOnGrid()
         {
-            return draw.PlayArea.Contains(Mouse.GetState().Position);
+            return Game.PlayArea.Contains(Mouse.GetState().Position);
         }
 
         public Location LocationOfMouse()
         {
-            int x = Mouse.GetState().Position.X - draw.PlayArea.Left;
-            int y = Mouse.GetState().Position.Y - draw.PlayArea.Top;
-            return new Location((int)Math.Floor((double)(x) / draw.TexSize),
-                                (int)Math.Floor((double)(y) / draw.TexSize));
+            int x = Mouse.GetState().Position.X - Game.PlayArea.Left;
+            int y = Mouse.GetState().Position.Y - Game.PlayArea.Top;
+            return new Location((int)Math.Floor((double)(x) / Game.TexSize),
+                                (int)Math.Floor((double)(y) / Game.TexSize));
         }
 
         public bool IsLocationChanging()

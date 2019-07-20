@@ -104,3 +104,5 @@ C:\Users\Isaiah\Desktop\Local Git\maze-world\MazeWorld\MazeWorld\obj\x86\Debug\M
 C:\Users\Isaiah\Desktop\Local Git\maze-world\MazeWorld\MazeWorld\obj\x86\Debug\MazeWorld.csproj.CopyComplete
 C:\Users\Isaiah\Desktop\Local Git\maze-world\MazeWorld\MazeWorld\obj\x86\Debug\MazeWorld.exe
 C:\Users\Isaiah\Desktop\Local Git\maze-world\MazeWorld\MazeWorld\obj\x86\Debug\MazeWorld.pdb
+C:\Users\Isaiah\Desktop\Local Git\maze-world\MazeWorld\MazeWorld\bin\Windows\x86\Debug\System.ValueTuple.dll
+C:\Users\Isaiah\Desktop\Local Git\maze-world\MazeWorld\MazeWorld\bin\Windows\x86\Debug\System.ValueTuple.xml

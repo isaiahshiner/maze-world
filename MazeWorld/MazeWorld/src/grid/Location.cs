@@ -109,7 +109,7 @@ namespace MazeWorld
         //A series of simple one line methods to utilize the private GetLocations method.
         //NOTE: Direct =  Orthogonal
         public List<Location> GetAllLocations(Grid g) { return GetLocations(0, 315, 45, g); }
-        public List<Location> GetDirectLocations(Grid g) { return GetLocations(0, 270, 90, g); }
+        public List<Location> GetOrthogonalLocations(Grid g) { return GetLocations(0, 270, 90, g); }
         public List<Location> getDiagonalLocations(Grid g) { return GetLocations(45, 315, 90, g); }
 
 
