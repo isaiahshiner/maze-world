@@ -27,6 +27,8 @@ namespace MazeWorld.src.maze
         private enum Phases {Generating = 1, Solving = 2}
         private Phases Phase;
 
+        private int CellUpdateRate;
+
         public MazeMode(ControlsHelper c) : base(c)
         {
             Generator = new DFSgener(this, Grid, null);
@@ -108,14 +110,21 @@ namespace MazeWorld.src.maze
         {
             String text;
 
-            text = "Speed: " + Speed + " Looping: " + Looping.ToString() + " Auto: " + Auto.ToString();
+            text = "Speed: " + Speed + " UpdateRate: " + CellUpdateRate + " Looping: " + Looping.ToString() + " Auto: " + Auto.ToString();
             if (Ctrl.MouseIsOnGrid())
             {
                 Entity e = Grid.Get(Ctrl.LocationOfMouse());
-                text += e == null ? "" : " " + e.ToString();
+                text += e == null ? "" : " Object:" + e.ToString();
             }
 
             return text;
+        }
+
+        public override void SlowDown(double slowFactor)
+        {
+            CellUpdateRate = (int)Math.Pow(slowFactor, -3);
+            if (Solver is BFSsolver)
+                ((BFSsolver)Solver).CellUpdateRate = CellUpdateRate;
         }
 
         private void phaseCheck()
@@ -128,8 +137,6 @@ namespace MazeWorld.src.maze
                         FinishedWithPhase = false;
                         Phase = Phases.Solving;
                         Solver.Start();
-                        if (Speed > 5)
-                            Speed = 5;
                         break;
                     case Phases.Solving:
                         FinishedWithPhase = false;

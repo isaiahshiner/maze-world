@@ -26,7 +26,7 @@ namespace MazeWorld
         public void UpdateColors()
         {
             //Will only update colors every 10 steps.
-            if (this.Steps == Master.Steps || ((Master.Steps + this.Steps) % 10 == 0))
+               if (this.Steps == Master.Steps || ((Master.Steps + this.Steps) % Master.CellUpdateRate == 0))
                 this.Color = DynamicColorCalculator(this.Steps, Master.Steps);
             
         }

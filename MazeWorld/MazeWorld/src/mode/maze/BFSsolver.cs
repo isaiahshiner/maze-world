@@ -23,8 +23,9 @@ namespace MazeWorld
      */
     public class BFSsolver : MazeSolver
     {
-        public int Phase { get; set; }
-        public int Steps { get; set; }
+        public int CellUpdateRate { get; set; } = 1;
+        public int Phase { get; set; } = 1;
+        public int Steps { get; set; } = 0;
         private List<BFSminion> CurrentMinions;
         private List<BFSminion> RecruitMinions;
         private List<BFScell> Cells;
@@ -32,8 +33,6 @@ namespace MazeWorld
         public BFSsolver(Grid g, Location l, MazeMode m, Location target) : base(m, g, l)
         {
             this.Target = target;
-            this.Phase = 1;
-            this.Steps = 0;
             this.CurrentMinions = new List<BFSminion>();
             this.RecruitMinions = new List<BFSminion>();
             this.Cells = new List<BFScell>();

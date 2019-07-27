@@ -17,8 +17,11 @@ namespace MazeWorld
      * Since the methods are generally very simple and are not conditional, 
      * few will be documented.
      */
+
     public partial class XNAGame : Game
     {
+        
+
         //General
         public GraphicsDeviceManager Graphics { get; set; }
         public int TexSize { get; set; } = 64;
@@ -42,6 +45,9 @@ namespace MazeWorld
         /// Determines controls and game loop functions
         /// </summary>
         public GameMode GameMode { get; set; }
+
+        public int FrameCount { get; set; }
+        public double TotalFPS { get; set; }
 
         private void SetTextures( Texture2D baseTex, SpriteFont font)
         {
@@ -74,11 +80,16 @@ namespace MazeWorld
             Batch.Draw(BaseTex, Header, Color.Black);
 
             String finalText;
-            float fps = (float)(1 / gt.ElapsedGameTime.TotalSeconds);
+            double fps = this.GetFPS(gt);
 
             finalText = ("FPS: " + fps.ToString("0.0")) + " " + GameMode.GetHeaderText();
 
             Batch.DrawString(Font, finalText, new Vector2(9, 8), Color.LimeGreen);
+        }
+
+        private double GetFPS(GameTime gt)
+        {
+            return (double)(1 / gt.ElapsedGameTime.TotalSeconds);
         }
 
         private void ChangeTextureSize(int i)
@@ -129,6 +140,21 @@ namespace MazeWorld
         private (int, int) GetGridSize()
         {
             return (PlayArea.Width / TexSize, PlayArea.Height / TexSize);
+        }
+
+        private void HandleSlowPerformance(GameTime gt)
+        {
+            FrameCount++;
+            TotalFPS += GetFPS(gt);
+
+            if(FrameCount == 20)
+            {
+                double averageFPS = TotalFPS / FrameCount;
+                GameMode.SlowDown(Math.Pow((averageFPS / 60), 0.5));
+
+                FrameCount = 0;
+                TotalFPS = 0;
+            }
         }
     }
 }

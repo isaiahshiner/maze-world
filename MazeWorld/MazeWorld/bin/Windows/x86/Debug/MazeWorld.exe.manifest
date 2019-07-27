@@ -43,14 +43,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="MazeWorld.exe" size="182240">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="MazeWorld.exe" size="183264">
       <assemblyIdentity name="MazeWorld" version="1.0.0.0" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>nerUZm3kmIbn6EDZtafBCbmlHmkVfDuXJF7YwmQ0FB4=</dsig:DigestValue>
+        <dsig:DigestValue>TPu7lk6r+QKQKZJpS1oIBEZezzp8tQECpwmR2w/fa9s=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

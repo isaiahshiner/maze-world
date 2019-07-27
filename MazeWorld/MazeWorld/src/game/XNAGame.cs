@@ -99,11 +99,16 @@ namespace MazeWorld
             else if (!IsActive && Graphics.IsFullScreen)
                 DisableFullScreen();
 
+            
+            HandleSlowPerformance(gameTime);
+
             GameMode.Update();
 
             Ctrl.Update();
             base.Update(gameTime);
         }
+
+        
 
         protected override void Draw(GameTime gameTime)
         {

@@ -89,6 +89,7 @@
   <ItemGroup>
     <Compile Include="src\game\GameMode.cs" />
     <Compile Include="src\grid\Actor.cs" />
+    <Compile Include="src\mode\labyrinth\LabyrinthMode.cs" />
     <Compile Include="src\mode\maze\BFScell.cs" />
     <Compile Include="src\mode\maze\BFSminion.cs" />
     <Compile Include="src\mode\maze\BFSsolver.cs" />
