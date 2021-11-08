@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SourceFileCollection xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Profile>Reach</Profile>
+  <Platform>Windows</Platform>
+  <Config />
+  <SourceFiles>
+    <File>C:/Users/Isaiah/Desktop/Local Git/maze-world/MazeWorld/MazeWorld/content/WhiteSquare16.png</File>
+    <File>C:/Users/Isaiah/Desktop/Local Git/maze-world/MazeWorld/MazeWorld/content/WhiteSquare32.png</File>
+    <File>C:/Users/Isaiah/Desktop/Local Git/maze-world/MazeWorld/MazeWorld/content/WhiteSquare8.png</File>
+    <File>C:/Users/Isaiah/Desktop/Local Git/maze-world/MazeWorld/MazeWorld/content/Arial.spritefont</File>
+    <File>C:/Users/Isaiah/Desktop/Local Git/maze-world/MazeWorld/MazeWorld/content/WhiteSquare4.png</File>
+    <File>C:/Users/Isaiah/Desktop/Local Git/maze-world/MazeWorld/MazeWorld/content/WhiteSquare64.png</File>
+    <File>C:/Users/Isaiah/Desktop/Local Git/maze-world/MazeWorld/MazeWorld/content/WhiteSquare2.png</File>
+  </SourceFiles>
+  <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+  </DestFiles>
+</SourceFileCollection>

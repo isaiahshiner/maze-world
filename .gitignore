@@ -1,0 +1,9 @@
+#Don't track the Visual Studio folder
+MazeWorld/.vs/
+
+#Also don't track these file types
+*.suo
+*.lock
+*.ide
+*.ide-shm
+*.ide-wal
