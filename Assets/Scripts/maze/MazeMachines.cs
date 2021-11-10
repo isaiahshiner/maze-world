@@ -1,25 +1,23 @@
-﻿using MazeWorld.src.maze;
-
-namespace MazeWorld.src.mode.maze
+﻿namespace MazeWorld
 {
     public abstract class MazeMachine : Actor
     {
-        public MazeMode Maze { get; set; }
+        public MazeController Maze { get; set; }
         public bool Running { get; set; } = false;
 
 
-        public MazeMachine(MazeMode m, Grid g, Location l) : base(Color.Yellow, g, l) { Maze = m; }
+        public MazeMachine(MazeController m, Grid g, Location l) : base(Color.Yellow, g, l) { Maze = m; }
         public MazeMachine() : base() { }
 
         public void Start()
         {
-            if(!Running)
+            if (!Running)
                 DoCustomStartWork();
             Running = true;
         }
 
         public void Finish()
-        { 
+        {
             if (Running)
             {
                 DoCustomFinishWork();
@@ -37,13 +35,13 @@ namespace MazeWorld.src.mode.maze
     public abstract class MazeSolver : MazeMachine
     {
         public Location Target { get; set; }
-        public MazeSolver(MazeMode m, Grid g, Location l) : base(m, g, l) { }
+        public MazeSolver(MazeController m, Grid g, Location l) : base(m, g, l) { }
         public MazeSolver() : base() { }
     }
 
     public abstract class MazeGenerator : MazeMachine
     {
-        public MazeGenerator(MazeMode m, Grid g, Location l) : base(m, g, l) { }
+        public MazeGenerator(MazeController m, Grid g, Location l) : base(m, g, l) { }
         public MazeGenerator() : base() { }
     }
 }

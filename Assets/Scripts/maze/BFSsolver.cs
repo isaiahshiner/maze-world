@@ -1,6 +1,4 @@
-﻿using MazeWorld.src.maze;
-using MazeWorld.src.mode.maze;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -26,7 +24,7 @@ namespace MazeWorld
         private List<BFSminion> RecruitMinions;
         private List<BFScell> Cells;
 
-        public BFSsolver(Grid g, Location l, MazeMode m, Location target) : base(m, g, l)
+        public BFSsolver(MazeController m, Grid g, Location l, Location target) : base(m, g, l)
         {
             this.Target = target;
             this.CurrentMinions = new List<BFSminion>();

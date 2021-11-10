@@ -1,9 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MazeWorld
 {
@@ -12,7 +8,7 @@ namespace MazeWorld
      * 
      * TODO: Fix Grid parameter requirement. You shouldn't have to pass the grid-
      * in every method, but I don't think this object should have a Grid reference either.
-     * This class abosolutely needs the most work out of all the framework classes.
+     * This class absolutely needs the most work out of all the framework classes.
      */
     public class Location
     {
@@ -36,7 +32,7 @@ namespace MazeWorld
             this.Y = y;
         }
 
-        /* Finds the the Location that is directly adjacent in any of the eight cardnial directions.
+        /* Finds the the Location that is directly adjacent in any of the eight cardinal directions.
          * The main way that new Locations are created and validated, other than construction.
          * 
          * PARAMETER: Direction is a multiple of 45. Can be positive or negative.

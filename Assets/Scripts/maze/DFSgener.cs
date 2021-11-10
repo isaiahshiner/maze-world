@@ -1,6 +1,4 @@
-﻿using MazeWorld.src.maze;
-using MazeWorld.src.mode.maze;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
 namespace MazeWorld
@@ -15,7 +13,7 @@ namespace MazeWorld
     {
         private bool First = true;//Used to fill the Grid on first step.
 
-        public DFSgener(MazeMode m, Grid g, Location l) : base(m, g, l) { }
+        public DFSgener(MazeController m, Grid g, Location l) : base(m, g, l) { }
         public DFSgener() : this(null, null, null) { }
 
         /* Calls on all the methods required to generate the maze.
@@ -138,7 +136,7 @@ namespace MazeWorld
 
         
 
-        //Seaches entire Grid, first changing trapped Untouched cells to Rocks,
+        //Searches entire Grid, first changing trapped Untouched cells to Rocks,
         //Then removes all remaining cells that are not Rocks.
         private void RemoveJunkFromGrid()
         {
