@@ -24,15 +24,14 @@ public class MazeController : MonoBehaviour
     private Phases Phase;
 
     private int CellUpdateRate;
+    private static readonly int TEX_SIZE = 8;
 
     void Start()
     {
+        Application.targetFrameRate = 15;
         Generator = new DFSgener(this, Maze, null);
         Solver = new BFSsolver(this, Maze, null, null);
-        this.Reset((20, 10));
-        var c = new MazeWorld.Color(255, 0, 255);
-        Debug.Log(c.Equals(MazeWorld.Color.Magenta));
-        Debug.Log(ColorMap.ConvertColor(c));
+        this.Reset(CalculateGridSize());
     }
 
     // Update is called once per frame
@@ -122,6 +121,7 @@ public class MazeController : MonoBehaviour
 
     private void Reset((int, int) maxSize)
     {
+        Debug.Log("Resetting to size" + maxSize);
         Generator.Finish();
         Solver.Finish();
 
@@ -153,23 +153,22 @@ public class MazeController : MonoBehaviour
         }
     }
 
-    private string GetHeaderText()
+    private (int, int) CalculateGridSize()
     {
-        string text;
+        // The size of the maze is rounded down, so we can do normal integer division
+        int xInt = Screen.width / TEX_SIZE, 
+            yInt = Screen.height / TEX_SIZE;
 
-        text = "Speed: " + Speed +
-        " UpdateRate: " + CellUpdateRate +
-        " Looping: " + Looping.ToString() +
-        " Auto: " + Auto.ToString();
-        /*
-        if (Ctrl.MouseIsOnGrid())
-        {
-            Entity e = Grid.Get(Ctrl.LocationOfMouse());
-            text += e == null ? "" : " Object:" + e.ToString();
-        }
-        */
-
-        return text;
+        // The size of the camera area is fractional, so we cast to a float.
+        // We also need the middle of the screen, so we divide by 2.
+        float xFloat = ((float)Screen.width / TEX_SIZE)/2, 
+              yFloat = ((float)Screen.height/ TEX_SIZE)/2;
+        
+        var camera = Camera.main;
+        camera.transform.position = new Vector3(xFloat, yFloat, -10);
+        // for some reason, the camera size is just half the height
+        camera.orthographicSize = yFloat;
+        return (xInt, yInt);
     }
 
     private void SlowDown(double slowFactor)
